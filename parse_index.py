@@ -24,13 +24,15 @@ def parse_index(path="./power-broker-index.txt", sort=False):
         page_matches = re.findall(r"(\d+)-*(\d*)", pages_str)
         pages = []
         for m in page_matches:
-            pages.append(int(m[0]))
+            start = int(m[0])
+            end = start + 1
             if len(m[1]) > 0:
                 addt = list(m[0])
-                start = len(addt) - len(m[1])
+                addt_start = len(addt) - len(m[1])
                 for i in range(len(m[1])):
-                    addt[start+i] = m[1][i]
-                pages.append(int(''.join(addt)))
+                    addt[addt_start+i] = m[1][i]
+                end = int(''.join(addt)) + 1
+            pages += list(range(start, end))
         index.append({
             'first': first_name,
             'last': last_name,
