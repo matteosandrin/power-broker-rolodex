@@ -21,27 +21,30 @@ def parse_index(path="./power-broker-index.txt", sort=False):
             3) if name_matches.group(3) is not None else ''
         parentheses = parentheses.replace('(', '')
         parentheses = parentheses.replace(')', '')
-        page_matches = re.findall(r"(\d+)-*(\d*)", pages_str)
-        pages = []
-        for m in page_matches:
-            start = int(m[0])
-            end = start + 1
-            if len(m[1]) > 0:
-                addt = list(m[0])
-                addt_start = len(addt) - len(m[1])
-                for i in range(len(m[1])):
-                    addt[addt_start+i] = m[1][i]
-                end = int(''.join(addt)) + 1
-            pages += list(range(start, end))
         index.append({
             'first': first_name,
             'last': last_name,
             'parentheses': parentheses,
-            'pages': pages
+            'pages': parse_pages(pages_str)
         })
     if sort:
         index.sort(key=lambda x: len(x['pages']), reverse=True)
     return index
+
+def parse_pages(pages_str):
+    page_matches = re.findall(r"(\d+)-*(\d*)", pages_str)
+    pages = []
+    for m in page_matches:
+        start = int(m[0])
+        end = start + 1
+        if len(m[1]) > 0:
+            addt = list(m[0])
+            addt_start = len(addt) - len(m[1])
+            for i in range(len(m[1])):
+                addt[addt_start+i] = m[1][i]
+            end = int(''.join(addt)) + 1
+        pages += list(range(start, end))
+    return sorted(set(pages))
 
 if __name__ == "__main__":
     index = parse_index(sort=True)
