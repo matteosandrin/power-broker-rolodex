@@ -35,28 +35,3 @@ def generate_blurb(name, documents):
     else:
         raise
 
-
-def extract_pages(page_nums, full_text_path="./power-broker-full-text.txt"):
-    full_text = open(full_text_path).read()
-    page_ranges = page_nums_to_page_ranges(page_nums)
-    for start, end in page_ranges:
-        pass
-
-
-def page_nums_to_page_ranges(page_nums):
-    page_ranges = []
-    i = 0
-    while i < len(page_nums):
-        page_ranges.append([page_nums[i], page_nums[i]+1])
-        adv = 1
-        for k in range(i+1, len(page_nums)):
-            if page_nums[k] == page_nums[k-1] + 1:
-                page_ranges[-1][1] = page_nums[k] + 1
-                adv += 1
-            else:
-                break
-        i += adv
-    return [tuple(pr) for pr in page_ranges]
-
-
-extract_pages([60, 61, 62, 102, 104, 107, 108, 109])
