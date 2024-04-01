@@ -8,17 +8,9 @@ FOR INA
 
 and for DR. JANET G. TRAVELL
 
-
-
-
-
 INTRODUCTION Wait Until the Evening			 	 1
 
-
-
-
-
-PART l THE IDEALIST
+PART I THE IDEALIST
 
 1.	Line of Succession 								 25
 
@@ -188,10 +180,7 @@ THE POWER BROKER
 
 
 
-INTRODUCTION
-
-
-Wait Until the Evening
+INTRODUCTION Wait Until the Evening
 
 
 
@@ -5959,29 +5948,6 @@ Of all the remarkable qualities of Robert Moses' matchless mind, one of the most
 
 28. The Warp on the Loom
 
-
-No State shall ... pass any ... law impairing the obligation of contracts
-
--THE CONSTITUTION OF THE UNITED STATES
-
-OF AMERICA. ARTICLE I. SECTION 10
-
-
-
-
-
-The authority shall have power to make contracts...
-
--CONSOLIDATED LAWS OF THE STATE OF
-
-NEW YORK. CHAPTER 43-A, ARTICLE III, TITLE 3:
-
-"TRIBOROUGH BRIDGE AUTHORITY"
-
-
-
-
-
 THE PUBLIC AUTHORITY was not a new device. The first of these entities that resembled private corporations but were given powers hitherto reserved for governments-powers to construct public improvements and. in order to pay off the bonds they sold to finance the construction, to charge the public for the use of the improvements-had been created in England during the reign of Queen Elizabeth. By the time Robert Moses went to Oxford three hundred years later, there were 1.800 such part-public, part- private bodies in England, including the huge Port of London Authority (named "Authority" because the clauses in the Act of Parliament that spelled out its powers began with the words Authority is hereby given) and highway-building boards whose roads were named "turnpikes" because they were blocked with horizontal bars (or "pikes") set into revolving pillars that would be turned aside to let a carriage pass only after the toll was paid.
 
 But the public authority concept was new in the United States. There may (or may not-there exists no reliable history of authorities) have been a few collecting tolls on rural roads (hearing rumors of one in North Carolina. Jimmy Walker contemplated setting one up in New York to enrich his friends), but at the time Moses went to Oxford the only urban authorities in existence on the western side of the Atlantic were a bare handful set up to build small water-supply systems. The Port of New York Authority, the first large authority in America, modeled on its London counterpart and created by an interstate compact between New York and New Jersey, would not be created until 1921, would not float its first bond issue until 1926 and would not become financially successful until 1931, when, after five years of near fiscal disaster, it would persuade the two states to let it take over the highly successful Holland Tunnel, which had been constructed by an independent commission. {* Moses had played a small but significant role in the tunnel's construction. One of his first assignments for Al Smith was to analyze two conflicting construction proposals, the commission's plan to build the tunnel by conventional methods at a cost it estimated at $28 million and General George W. Goethals' plan to build it by a new method at a cost Goethals estimated at $12 million. The young reformer, unequipped with the slightest practical experience in construction, interviewed the famed builder of the Panama Canal, and gave Smith his verdict: "a great personality, a go-getter, but neither a great engineer nor a financier." Equally unimpressed with the commission's engineers, he talked with independent experts and concluded—and told the Governor—that the Goethals plan "would not work" and that while the commission's would, the cost would be not $28 but $48 million. Smith's reaction, Moses was to recall, "introduced me to his extraordinary head for facts and figures and his immense loyalty to his assistants, no matter how green, young and new at the game." Ignoring protests, the Governor threw out the Goethals plan and accepted the commission's, but allocated for it the $48 million that Moses had suggested. The actual cost turned out to be $49 million. t Because the facilities would thereafter belong to not one but two states, there were plans to have them run by bistate commissions with members appointed by both legislatures.} It was not until the New Deal, when Depression-strapped municipalities, unable to finance major public works themselves, suddenly realized that RFC and PWA grants were available for self-liquidating projects, that urban authorities began to be established in any number. In 1933 and 1934, when Moses was playing the crucial role in setting up the Triborough, Bethpage, Jones Beach, Henry Hudson, Marine Parkway and Hayden Planetarium authorities—and a lesser but still key role in the creation of seven other authorities—there were only a few handfuls of other authorities in the entire country.
@@ -6175,15 +6141,6 @@ Moses knew it, too. After reading the bond agreements and contracts, La Guardia 
 
 
 29. “And When the Last Law Was Down . . .”
-
-
-The weather being fine and spring-like, I walked for an hour before dinner with my wife in the Battery. . . . What a beautiful spot it is! The grounds are in fine order; the noble bay, with the opposite shores of New Jersey, Staten and Long Islands, vessels of every description, from the noble, well appointed Liverpool packet to the little market craft, and steamers arriving from every point, give life and animation to a prospect unexcelled by any city view in the world. It would be worth traveling one hundred miles out of one's way in a foreign country to get a sight of it.
-
--DIARY OF PHILIP HONE, APRIL 10, 1835
-
-
-
-
 
 ANXIOUS AS HE WAS to paint onto the great canvas of New York Moses' long-proposed "circumferential" bypass route around the city to the north-east for traffic from both Lower Manhattan and Brooklyn—a Brooklyn-Battery Tunnel, an elevated highway to carry traffic from the tunnel across Brooklyn's congested downtown and, to carry traffic from the highway around the edge of Brooklyn and Queens to the Bronx-Whitestone Bridge, where it could link up with the Westchester parkways beyond, a "Circumferential Parkway" (Moses had not yet been forced by the unwieldiness of the name to call it the "Belt")—La Guardia could see no way of obtaining the money that the Mayor-artist called the "brush": tunnel would cost $65,000,000, elevated highway $12,000,000, parkway $28,000,000—a total of $105,000,000. This was approximately $105,000,000 more than the city could afford, and the city's Tunnel Authority, which had the legislative authority to build the tunnel, could provide little help: with its first tunnel, the Oueens-Midtown, not due to open for another two years, it had no revenues to help capitalize new projects, and investors were so leery of buying bonds for another tunnel before the first had proven successful that they were demanding interest rates that would add additional millions to the cost. When La Guardia tried to sell the bonds in Washington, the reception was chilling; RFC Chairman Jesse Jones said that, cousin on the Tunnel Authority or no, he would not consider sinking a cent more than $39,000,000 in another New York tunnel; Ickes, from whom the Mayor attempted to raise the balance as an outright PWA grant, said that New York's share of PWA funds was already so disproportionate that he would not give the city more than $5,000,000 for any purpose. And when La Guardia raised the subject of money with the only other source he could think of—Robert Moses—the chill over the whole situation turned to ice. For while Moses told the Mayor that the Triborough Bridge Authority did indeed have money to spare—to the Mayor's utter astonishment, Triborough's chairman revealed that the Authority could, by capitalizing its surpluses, raise immediately more than $30,000,000—and was willing to use that money for the circumferential project, he also told the Mayor there would be a price for its use: the Mayor would have to allow him to do what two years earlier he had prevented him from doing. He would have to allow him to take over the Tunnel Authority.
 
@@ -6755,13 +6712,6 @@ Not that those facts deterred Moses, of course. In 1969, he wrote in Public Work
 
 32. Quid Pro Quo
 
-
-No Tammany man can rise above the local machine. Governor Smith achieved that distinction, but Albany is a long way from the Bowery.
-
-A return to the city of Tammany would be a counsel of despair. People elsewhere would say that water cannot rise above its own level and that the level in New York is contemptibly and irretrievably low.
-
--ROBERT MOSES, 1941
-
 ON THE BIG desk in the far corner of the big room in City Hall, among the litter of maps and letters, corncob pipes and spare eyeglasses and the narrow rack holding the six buzzers, there sat now, always, a small bottle of white pills. And more and more frequently now. the little man behind the desk would press both hands hard against his back and hold them there for long minutes, his swarthy face turned gray.
 
 Whether or not Fiorello La Guardia knew in 1945 that he was dying of cancer-and no associate would be able to say for sure later whether he did or not-he was learning that pain could drain even his once-limitless energy (once, talking with a reporter at the end of a long day. he suddenly said, with real surprise in his voice. "Well, I guess I'm tired, too"), and perhaps the sixty-two-year-old Mayor wondered whether he would be physically able to win another victory in the ruthless political arena, where weakness is not pitied but exploited. The odds against victory had never been longer. His frantic grasping for higher office and ludicrous posturing in his wartime jobs had eroded his popularity so deeply that in early 1945 a Daily News straw poll showed that only one out of every four New Yorkers favored his re-election. Roosevelt was dead. Truman antagonized by his antics; if he sallied forth again against a Democratic candidate, in a city in which seven out of every nine registered voters were Democrats, he would no longer be able to count on "benevolent neutrality" from the White House. And the candidate would be Tammany-backed William O'Dwyer. who had given him such a tough fight in 1941. who would be able to ride into the arena this time with a brigadier general's stars, bestowed for wartime service that looked good at least on paper, glittering on his shoulders-and who had led him in the News poll. The old coalition which he had led out against the Democrats before had dissolved behind him. Republican leaders, incensed because, in his drive for personal power, he had refused them patronage, were determined, once and for all, to deny him their party's nomination. Reform leaders—men interested in principles rather than patronage—felt that he had, in maneuvers such as downgrading the City Planning Commission and ousting Kern and Sayre and Stanley Isaacs, betrayed those principles; the Citizens Union wanted another Fusion campaign, but one with a new knight at its head. And when, in the spring of 1945, the Mayor appealed secretly first to the City Fusion Party and then to GOP leaders for their endorsement and was humiliatingly rebuffed, he announced publicly that he had decided that twelve years as Mayor was enough for any man, that he would not run again and that he would support instead an independent "No Deal" ticket headed by reformer Newbold Morris.
@@ -6801,15 +6751,6 @@ The first part of the ex-Mayor's statement was not completely accurate. The seco
 
 
 33. Leading Out the Regiment
-
-
-The papers and some people are always ready to find wrong motives in what us statesmen do. If we bring about some big improvement that benefits the city and it just happens, as a sort of coincidence, that we make a few dollars out of the improvement, they say we are grafters. But we are used to this kind of ingratitude. It falls to the lot of all statesmen, especially Tammany statesmen. All we can do is to bow our heads in silence and wait till time has cleared our memories. Just think of mentionin' dishonest graft in connection with the name of George Washington Plunkitt, the man who gave the city its magnificent chain of parks, its Washington Bridge, its Speedway, its Museum of Natural History, its One Hundred and Fifty-fifth Street Viaduct and its West Side Courthouse! I was the father of the bills that provided for all these; yet some people haw questioned my honest motives. If that's the case, how can you expect legislators to fare who are not the fathers of the parks, the Washington Bridge, the Speedway and the Viaduct?
-
--STATE SENATOR GEORGE WASHINGTON PLUNKITT (COMMANDER IN CHIEF OF THE BLASK HORSE CAVALRY). 1905
-
-
-
-
 
 BEFORE THE WAR, Robert Moses had employed his leverage with a force not responsible to New York City's voters but possessed of considerable influence over the city's government-New York State-to compel the city to give him a free hand in certain areas of public works. Hardly had the war ended when another outside force, the federal government, began to loom larger and larger over the city. And Moses, with his aims for the city now enlarged—enlarged to a point at which they involved in effect the reshaping of its entire public estate—employed that force too to compel the city to accept his aims as its own.
 
@@ -9397,15 +9338,6 @@ And they looked.
 
 43. Late Arrival
 
-
-The Great Statesman McKee is a synthetic character which never actually existed on sea or land, puffed up by the press ... and now in the process of deflation. There is a large amount of unfairness to the individual in this process, but in the end it arrives at the truth.
-
--ROBERT MOSES, 1933
-
-
-
-
-
 AT ABOUT THE TIME that the "Battle of Central Park" was ending, investigative reporter Gene Gleason of the World-Telegram and Sun was winding up his latest assignment. His editors, trying to think up a new one, asked him if he had anything in mind. Yes, he said, he had.
 
 Robert Moses.
@@ -9545,17 +9477,6 @@ W. Shakespeare.
 
 
 44. Mustache and the Bard
-
-
-MR. MOULDER. In connection with the work that you are doing at the present time, do you have the opportunity to inject into your plays or into the acting or the entertainment supervision which you have, any propaganda in any way which would influence others to be sympathetic with the Communist philosophy or the beliefs of communism?
-
-MR. PAPIROFSKY. Sir, the plays we do are Shakespeare's plays. Shakespeare said, "To thine own self be true," and various other lines from Shakespeare can hardly be said to be subversive or influencing minds. I cannot control the writings of Shakespeare... MR. AHRENS. We are not concerned with the plays and you know we are not, and there is no suggestion here by this chairman or anyone else that Shakespeare was a Communist. That is ludicrous and absurd. That is the Commie line
-
--HEARINGS OF THE HOUSE COMMITTEE ON UN-AMERICAN ACTIVITIES. JUNE 19, 1958. TESTIMONY OF JOSEPH PAPIROFSKY (PAPP)
-
-
-
-
 
 WHAT PRESS AND PUBLIC were never told about the Second Battle of Central Park-and. because of the viciousness of the tactics Moses employed in his campaign to win it. would probably not have believed if they had been told-was that he did not want it and had no part in bringing it about. Of all the battles the old lion had fought, this was the one for which he had least stomach.
 
@@ -10315,11 +10236,6 @@ Less than a month later, her husband, seventy-seven, married Mary Grady, forty-n
 
 
 48. Old Lion, Young Mayor
-
-
-He paweth in the valley, and rejoiceth in his strength; he goeth on to meet the armed men.... He saith among the trumpets, Ha, ha; and he smelleth the battle afar off, the thunder of the captains, and the shouting.
-
--job. 39:25
 
 For twenty years, mayoral candidates had been vying for Moses' support. In the 1965 campaign, none of the three candidates had. On the contrary, they had all criticized him. The conservative candidate, an admirer, had been muted in his criticism, but the two major candidates had attacked his park, transportation and housing policies-everything. it seemed, that he had done or was planning to do for New York. And the one who had been elected was the one who had meant it. Hardly had he been elected when John V. Lindsay appointed as Park Commissioner Thomas P. F. Hoving, author of a White Paper on Parks that had attacked Moses' policies. But there was no real power left in the Park Department, hadn't been for years. The real power was in highways, and the two posts Robert Moses held were in that area, the only two posts he had left-chairmanship of the Triborough Bridge and Tunnel Authority (his term did not expire until June 30. 1970, eighteen months after Lindsay's was to expire) and city arterial highways representative. Lindsay said he could take those posts away, too. Well, that was all right. Moses didn't mind him saying that. That was of a piece with his rhetoric during the campaign, and a new Mayor had to pay at least lip service to that rhetoric after his election.
 
