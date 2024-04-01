@@ -1,9 +1,6 @@
 import unittest
 import parse_index
 
-# Boilerplate code for a test case
-
-
 class TestParseIndex(unittest.TestCase):
     def test_parse_pages_default(self):
         pages_str = "1, 5, 7"
