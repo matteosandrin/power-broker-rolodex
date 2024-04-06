@@ -1,12 +1,28 @@
 from anthropic import Anthropic
 from api_keys import CLAUDE_API_KEY
+from parse_index import parse_index
+from get_pages import get_pages
 
 client = Anthropic(
     api_key=CLAUDE_API_KEY,
 )
 
+INDEX = parse_index()
+PROMPT = """Read the documents above and answer the following question, 
+in the context of the book "The Power Broker" by Robert Caro: 
+Who is {}? Write one paragraph in the style of a biography blurb, 
+highlighting how the person is relevant to history in general and to 
+the the book specifically"""
 
-def generate_blurb(name, documents):
+def get_bio(person):
+    documents = get_pages(person["pages"], expand=True)
+    name = person["first"] + " " + person["last"]
+    print("name:", name)
+    print("document:", documents)
+    bio = claude_generate_bio(name, documents)
+    return bio
+
+def claude_generate_bio(name, documents):
     input_content = []
     for i, doc in enumerate(documents):
         input_content.append({
@@ -15,10 +31,7 @@ def generate_blurb(name, documents):
         })
     input_content.append({
         "type": "text",
-        "text": "Read the documents above, and in the context of the book "
-        "\"The Power Broker\" by Robert Caro, answer the following question: "
-        "Who is {}? Write one paragraph in the style of a "
-        "biography blurb".format(name)
+        "text": PROMPT.format(name)
     })
     message = client.messages.create(
         max_tokens=1024,
