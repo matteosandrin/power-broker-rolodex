@@ -1,7 +1,7 @@
 from anthropic import Anthropic
 from api_keys import CLAUDE_API_KEY
-from parse_index import parse_index
-from get_pages import get_pages
+from index import parse_index
+from pages import get_pages
 
 client = Anthropic(
     api_key=CLAUDE_API_KEY,
