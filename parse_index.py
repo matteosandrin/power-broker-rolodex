@@ -7,31 +7,37 @@ def parse_index(path="./power-broker-index.txt", sort=False):
     index = []
 
     for line in data.readlines():
-        first_digit = 0
-        for i, c in enumerate(line):
-            if c.isdigit():
-                first_digit = i
-                break
-        name_str, pages_str = line[:first_digit], line[first_digit:]
-        name_matches = re.match(
-            r"^([\w\s\-'.\(\)\-]+), ([\w\s\-'.\-]+)[,\s]+(\([\w\s\-'.\-,]+\))*", name_str)
-        last_name = name_matches.group(1)
-        first_name = name_matches.group(2)
-        parentheses = name_matches.group(
-            3) if name_matches.group(3) is not None else ''
-        parentheses = parentheses.replace('(', '')
-        parentheses = parentheses.replace(')', '')
-        index.append({
-            'first': first_name,
-            'last': last_name,
-            'parentheses': parentheses,
-            'pages': parse_pages(pages_str)
-        })
+        parsed_line = parse_index_line(line)
+        index.append(parsed_line)
     if sort:
         index.sort(key=lambda x: len(x['pages']), reverse=True)
     return index
 
-def parse_pages(pages_str):
+
+def parse_index_line(line):
+    first_digit = 0
+    for i, c in enumerate(line):
+        if c.isdigit():
+            first_digit = i
+            break
+    name_str, pages_str = line[:first_digit], line[first_digit:]
+    name_matches = re.match(
+        r"^([\w\s\-'.\(\)\-]+), ([\w\s\-'.\-]+)[,\s]+(\([\w\s\-'.\-,]+\))*", name_str)
+    last_name = name_matches.group(1)
+    first_name = name_matches.group(2)
+    parentheses = name_matches.group(3) \
+        if name_matches.group(3) is not None else ''
+    parentheses = parentheses.replace('(', '')
+    parentheses = parentheses.replace(')', '')
+    return {
+        'first': first_name,
+        'last': last_name,
+        'parentheses': parentheses,
+        'pages': parse_page_list(pages_str)
+    }
+
+
+def parse_page_list(pages_str):
     page_matches = re.findall(r"(\d+)-*(\d*)", pages_str)
     pages = []
     for m in page_matches:
@@ -45,6 +51,7 @@ def parse_pages(pages_str):
             end = int(''.join(addt)) + 1
         pages += list(range(start, end))
     return sorted(set(pages))
+
 
 if __name__ == "__main__":
     index = parse_index()
