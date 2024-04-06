@@ -29,7 +29,6 @@ def find_page_location(page_num):
             next_chapter = METADATA["chapters"][i+1]
     chapter_start, chapter_end = \
         find_chapter_location(chapter), find_chapter_location(next_chapter)
-    chapter_text = FULL_TEXT[chapter_start:chapter_end]
     page_count = next_chapter["page"] - chapter["page"]
     char_count = chapter_end - chapter_start
     avg_char_per_page = char_count / page_count

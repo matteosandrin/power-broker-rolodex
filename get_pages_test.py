@@ -1,5 +1,6 @@
 import unittest
 import get_pages
+import json
 
 
 class TestGetIndex(unittest.TestCase):
@@ -25,6 +26,19 @@ class TestGetIndex(unittest.TestCase):
         r = get_pages.page_nums_to_page_ranges(
             [18, 19, 20, 21, 22, 26, 27, 28, 29, 30, 31, 32, 33, 34])
         self.assertEqual(r, [(18, 23), (26, 35)])
+
+    def test_find_chapter_location(self):
+        metadata_file = open("./power-broker-metadata.json")
+        METADATA = json.load(metadata_file)
+
+        last_loc = -1
+        for c in METADATA["chapters"]:
+            loc = get_pages.find_chapter_location(c)
+            self.assertNotEqual(loc, -1)
+            self.assertTrue(last_loc < loc)
+            last_loc = loc
+
+        metadata_file.close()
 
 
 if __name__ == '__main__':
