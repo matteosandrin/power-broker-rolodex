@@ -47,6 +47,6 @@ def parse_pages(pages_str):
     return sorted(set(pages))
 
 if __name__ == "__main__":
-    index = parse_index(sort=True)
+    index = parse_index()
     with open("power-broker-index.json", "w") as f:
         json.dump(index, f, sort_keys=True, indent=2)
