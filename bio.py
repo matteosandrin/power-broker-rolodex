@@ -2,39 +2,36 @@ from anthropic import Anthropic
 from api_keys import CLAUDE_API_KEY
 from index import parse_index
 from pages import get_pages
+from prompt import get_prompt, PromptSize
 
 client = Anthropic(
     api_key=CLAUDE_API_KEY,
 )
 
 INDEX = parse_index()
-PROMPT = """Read the documents above and answer the following question, 
-in the context of the book "The Power Broker" by Robert Caro: 
-Who is {}? Write one paragraph in the style of a biography blurb, 
-highlighting how the person is relevant to history in general and to 
-the the book specifically"""
+prompt_size_to_max_tokens = {
+    PromptSize.SMALL : 1024,
+    PromptSize.MEDIUM : 2048,
+    PromptSize.LARGE : 4096,
+}
 
 def get_bio(person):
     documents = get_pages(person["pages"], expand=True)
     name = person["first"] + " " + person["last"]
-    print("name:", name)
-    print("document:", documents)
-    bio = claude_generate_bio(name, documents)
+    bio = claude_generate_bio(name, documents, PromptSize.MEDIUM)
     return bio
 
-def claude_generate_bio(name, documents):
+
+def claude_generate_bio(name, documents, size: PromptSize):
     input_content = []
-    for i, doc in enumerate(documents):
-        input_content.append({
-            "type": "text",
-            "text": "DOCUMENT {}\n{}".format(i, doc)
-        })
-    input_content.append({
+    prompt = get_prompt(name, documents, size)
+    print(prompt)
+    input_content = [{
         "type": "text",
-        "text": PROMPT.format(name)
-    })
+        "text": prompt
+    }]
     message = client.messages.create(
-        max_tokens=1024,
+        max_tokens=prompt_size_to_max_tokens[size],
         messages=[
             {
                 "role": "user",
