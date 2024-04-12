@@ -1,16 +1,36 @@
 from enum import Enum
+from typing import List
 
 
-class PromptSize(Enum):
+class AnswerSize(Enum):
     SMALL = 1
     MEDIUM = 2
     LARGE = 3
 
 
+def answer_size_to_max_tokens(size: AnswerSize) -> int:
+    token_num_dict = {
+        AnswerSize.SMALL: 1024 * 1,
+        AnswerSize.MEDIUM: 1024 * 2,
+        AnswerSize.LARGE: 1024 * 4,
+    }
+    return token_num_dict[size]
+
+
+def pages_to_answer_size(pages: List[int]) -> AnswerSize:
+    pages_count = len(pages)
+    if pages_count <= 20:
+        return AnswerSize.SMALL
+    elif pages_count > 20 and pages_count <= 50:
+        return AnswerSize.MEDIUM
+    elif pages_count > 50:
+        return AnswerSize.LARGE
+
+
 INITIAL_PROMPT = """
-I'm going to give you a series of documents. Read the documents carefully, 
+I'm going to give you a series of documents. Read the documents carefully,
 because I'm going to ask you a question about them. Here are the documents:
-"""
+""".replace("\n", " ")
 
 DOCS_PROMPT = """
 <documents>
@@ -18,39 +38,19 @@ DOCS_PROMPT = """
 </documents>
 """
 
-QUOTE_PROMPT = """
-First, find the quotes from the document that are most relevant to answering the
-question, and then print them in numbered order in <quotes></quotes> tags.
-Quotes should be relatively short. If there are no relevant quotes, write "No
-relevant quotes" instead.
-"""
-
 QUESTION_PROMPT = """
-Then, answer the question in <answer></answer> tags. Do not include or reference
-quoted content verbatim in the answer. Don't say "According to Quote [1]" when
-answering. Don't explain what the book "The Power Broker" is. {style}
-
-If the question cannot be answered by the document, say so.
+Answer the question in <answer></answer> tags. {style} Don't explain what the
+book "The Power Broker" is. If the question cannot be answered by the document,
+say so.
 
 Here is the question: Who is {name}?
-"""
+""".replace("\n", " ")
 
-STYLE_PROMPT_SM = """The answer should be one paragraph in the style of a
-short biography, highlighting how the person is relevant to the the book "The
-Power Broker" by Robert Caro specifically, and to history in general.
-"""
-
-STYLE_PROMPT_MD = """The answer should be three paragraphs long and in the
-style of a short biography, highlighting how the person is relevant to the the
-book "The Power Broker" by Robert Caro specifically, and to history in general.
-The first paragraph should be about how the person is relevant to the book. The
-second paragraph should go deeper on the relationship between the person and
-Robert Moses. The third paragraph should explain how the person is relevant to
-history in general.
-"""
-
-MODERATION_PROMPT = """Write in language that is academic, safe, inoffensive, 
-eloquent, succinct"""
+STYLE_PROMPT = """The answer should be {num} paragraph{s} long and in the
+style of a short biography, highlighting how the person is relevant to the
+book "The Power Broker" by Robert Caro specifically, and how the person is
+relevant more broadly in a historical context.
+""".replace("\n", " ")
 
 DOC_PROMPT = """
 <document index="{index}">
@@ -58,20 +58,21 @@ DOC_PROMPT = """
 </document>
 """
 
-def get_question_prompt(name, size: PromptSize):
-    style = ""
-    if size == PromptSize.SMALL:
-        style = STYLE_PROMPT_SM
-    elif size == PromptSize.MEDIUM:
-        style = STYLE_PROMPT_MD
-    style += MODERATION_PROMPT
+
+def get_question_prompt(name, size: AnswerSize):
+    style = STYLE_PROMPT
+    if size == AnswerSize.SMALL:
+        style = style.format(num="one", s="")
+    elif size == AnswerSize.MEDIUM:
+        style = style.format(num="three", s="s")
+    elif size == AnswerSize.LARGE:
+        style = style.format(num="six", s="s")
     return QUESTION_PROMPT.format(name=name, style=style)
 
 
-def get_prompt(name, documents, size: PromptSize):
+def get_prompt(name, documents, size: AnswerSize):
     docs_prompt = ""
     for i, doc in enumerate(documents):
         docs_prompt += DOC_PROMPT.format(index=i+1, content=doc)
     question_prompt = get_question_prompt(name, size)
-    return INITIAL_PROMPT + DOCS_PROMPT.format(docs=docs_prompt) + \
-        QUOTE_PROMPT + question_prompt
+    return INITIAL_PROMPT + DOCS_PROMPT.format(docs=docs_prompt) + question_prompt

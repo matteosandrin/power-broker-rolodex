@@ -18,6 +18,10 @@ class TestGetIndex(unittest.TestCase):
         r = pages.expand_page_nums([20, 28, 29, 30, 32], 0)
         self.assertEqual(r, [20, 28, 29, 30, 32])
 
+    def test_expand_page_nums_start(self):
+        r = pages.expand_page_nums([1, 5, 6], 2)
+        self.assertEqual(r, [1, 2, 3, 4, 5, 6, 7, 8])
+
     def test_page_nums_to_page_ranges_1(self):
         r = pages.page_nums_to_page_ranges([20, 28, 29, 30, 32])
         self.assertEqual(r, [(20, 21), (28, 31), (32, 33)])

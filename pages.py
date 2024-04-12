@@ -3,6 +3,9 @@ import json
 FULL_TEXT = open("./power-broker-full-text.txt").read()
 METADATA = json.load(open("./power-broker-metadata.json"))
 
+BOOK_START = 1
+BOOK_END = 1164
+
 
 def get_pages(page_nums, expand=False):
     if expand:
@@ -44,13 +47,17 @@ def find_page_location(page_num):
 def find_chapter_location(chapter):
     return FULL_TEXT.find("\n\n\n\n\n" + chapter["name"])
 
+
 def expand_page_nums(page_nums, expand_amount):
     expanded_page_nums = []
     for p in page_nums:
-        expanded_page_nums.append(p)
+        if p >= BOOK_START and p < BOOK_END:
+            expanded_page_nums.append(p)
         for i in range(1, expand_amount+1):
-            expanded_page_nums.append(p + i)
-            expanded_page_nums.append(p - i)
+            if p - i >= BOOK_START:
+                expanded_page_nums.append(p - i)
+            if p + i < BOOK_END:
+                expanded_page_nums.append(p + i)
     expanded_page_nums = list(set(expanded_page_nums))
     return sorted(expanded_page_nums)
 
