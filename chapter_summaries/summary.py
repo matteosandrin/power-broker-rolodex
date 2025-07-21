@@ -154,8 +154,16 @@ def summarize_chapter(client, chapter_filename):
     save_final_summary(final_summary, tmp_dir_name)
 
 if __name__ == "__main__":
-    chapter_filename = sys.argv[1]
-    raw_mode = sys.argv[2]
+    raw_mode = sys.argv[1]
     MODE = get_mode(raw_mode)
     client = LLMClient(MODE)
-    summarize_chapter(client, chapter_filename)
+    if len(sys.argv) > 2:
+        chapter_filename = sys.argv[2]
+        print(f"Processing {chapter_filename}...")
+        summarize_chapter(client, chapter_filename)
+    else:
+        for i in range(52):
+            chapter_filename = f"chapters/chapter_{i}.txt"
+            if os.path.exists(chapter_filename):
+                print(f"Processing {chapter_filename}...")
+            summarize_chapter(client, chapter_filename)
