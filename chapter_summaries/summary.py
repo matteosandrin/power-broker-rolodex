@@ -51,6 +51,25 @@ def get_chunks(text):
     chunks = [c for c in chunks if len(encoding.encode(c)) >= MIN_CHUNK_SIZE]
     return chunks
 
+def merge_summaries(client, summaries, word_count):
+    prompt = open("prompts/merge_summary_prompt.txt", "r").read()
+    prompt = prompt.format(word_count=word_count)
+    print(f"Merge prompt: {repr(prompt[:60] + '...' if len(prompt) > 60 else prompt)}")
+
+    return client.respond(
+        system_prompt=prompt,
+        user_prompt="\n\n".join(summaries),
+    )
+
+def style_summary(client, text):
+    prompt = open("prompts/style_prompt.txt", "r").read()
+    print(f"Style prompt: {repr(prompt[:60] + '...' if len(prompt) > 60 else prompt)}")
+
+    return client.respond(
+        system_prompt=prompt,
+        user_prompt=text,
+    )
+
 if __name__ == "__main__":
 
     raw_mode = sys.argv[2]
@@ -109,15 +128,10 @@ if __name__ == "__main__":
             f.write(response)
     print()
 
-    prompt = open("prompts/merge_summary_prompt.txt", "r").read()
     word_count = int(len(encoding.encode(chapter_text)) * COMPRESSION_FACTOR)
-    prompt = prompt.format(word_count=word_count)
-    print(f"Final prompt: {repr(prompt[:60] + '...' if len(prompt) > 60 else prompt)}")
+    merged_summary = merge_summaries(client, summaries, word_count)
 
-    final_summary = client.respond(
-        system_prompt=prompt,
-        user_prompt="\n\n".join(summaries),
-    )
+    final_summary = style_summary(client, merged_summary)
 
     print(f"Final summary: {final_summary}")
     with open(f"{tmp_dir_name}/final_summary.txt", "w") as f:
