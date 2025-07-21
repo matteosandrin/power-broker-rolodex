@@ -1,6 +1,6 @@
 from enum import Enum
 from openai import OpenAI
-from .config import OPENAI_API_KEY
+from config import OPENAI_API_KEY
 import lmstudio as lms
 import semchunk
 import tiktoken
@@ -85,9 +85,7 @@ if __name__ == "__main__":
     chapter_filename = sys.argv[1]
     chapter_name = os.path.basename(chapter_filename).split('.')[0]
     tmp_dir_name = f"{chapter_name}_summary_tmp"
-    if os.path.exists(tmp_dir_name):
-        os.system(f"rm {tmp_dir_name}/*")
-    else:
+    if not os.path.exists(tmp_dir_name):
         os.makedirs(tmp_dir_name)
     
     chapter_text = open(chapter_filename, "r").read()
@@ -103,29 +101,39 @@ if __name__ == "__main__":
     token_count = 0
     summaries = []
 
-    for i, chunk in enumerate(chunks):
-        chunk_size = len(encoding.encode(chunk))
-        summary_token_count = int(chunk_size * COMPRESSION_FACTOR)
-        print(f"Chunk {i} of ({len(chunks)}): {chunk_size} tokens")
-        print(f"    Summary size: {summary_token_count} tokens")
-        print(f"    Content: {repr(chunk[:60] + '...' if len(chunk) > 60 else chunk)}")
-        
-        prompt = open("prompts/single_excerpt_summary_prompt.txt", "r").read()
-        prompt = prompt.format(word_count=summary_token_count)
-        print(f"    Prompt: {repr(prompt[:60] + '...' if len(prompt) > 60 else prompt)}")
-        print()
+    if os.path.exists(tmp_dir_name):
+        i = 0
+        while os.path.exists(f"{tmp_dir_name}/summary_chunk_{i}.txt"):
+            with open(f"{tmp_dir_name}/summary_chunk_{i}.txt", "r") as f:
+                summaries.append(f.read())
+            i += 1
 
-        response = client.respond(
-            system_prompt=prompt,
-            user_prompt=chunk,
-        )
-        print(f"    Response: {response}")
-        print()
+    if len(summaries) > 0:
+        print(f"Found {len(summaries)} existing summaries in {tmp_dir_name}. Continuing from there.")
+    else:
+        for i, chunk in enumerate(chunks):
+            chunk_size = len(encoding.encode(chunk))
+            summary_token_count = int(chunk_size * COMPRESSION_FACTOR)
+            print(f"Chunk {i} of ({len(chunks)}): {chunk_size} tokens")
+            print(f"    Summary size: {summary_token_count} tokens")
+            print(f"    Content: {repr(chunk[:60] + '...' if len(chunk) > 60 else chunk)}")
+            
+            prompt = open("prompts/single_excerpt_summary_prompt.txt", "r").read()
+            prompt = prompt.format(word_count=summary_token_count)
+            print(f"    Prompt: {repr(prompt[:60] + '...' if len(prompt) > 60 else prompt)}")
+            print()
 
-        summaries.append(response)
+            response = client.respond(
+                system_prompt=prompt,
+                user_prompt=chunk,
+            )
+            print(f"    Response: {response}")
+            print()
 
-        with open(f"{tmp_dir_name}/summary_chunk_{i}.txt", "w") as f:
-            f.write(response)
+            summaries.append(response)
+
+            with open(f"{tmp_dir_name}/summary_chunk_{i}.txt", "w") as f:
+                f.write(response)
     print()
 
     word_count = int(len(encoding.encode(chapter_text)) * COMPRESSION_FACTOR)
