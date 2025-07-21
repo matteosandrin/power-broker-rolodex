@@ -1,0 +1,126 @@
+from enum import Enum
+from openai import OpenAI
+from .config import OPENAI_API_KEY
+import lmstudio as lms
+import semchunk
+import tiktoken
+import sys
+import os
+
+class Mode(Enum):
+    LOCAL = "local"
+    OPENAI = "openai"
+
+LOCAL_SERVER_API_HOST = "192.168.1.3:1234"
+LOCAL_MODEL_NAME = "google/gemma-3-27b"
+
+MAX_CHUNK_SIZE = 2048
+MIN_CHUNK_SIZE = 16
+COMPRESSION_FACTOR = 0.04
+
+class LLMClient:
+    def __init__(self, mode):
+        self.mode = mode
+        if mode == Mode.LOCAL:
+            self.client = lms.get_default_client(LOCAL_SERVER_API_HOST)
+            self.model = self.client.llm.load_new_instance(LOCAL_MODEL_NAME, config={
+                "contextLength": 8192,
+            })
+        elif mode == Mode.OPENAI:
+            self.client = OpenAI(api_key=OPENAI_API_KEY)
+
+    def respond(self, system_prompt, user_prompt, temperature=0.2):
+        if self.mode == Mode.LOCAL:
+            chat = lms.Chat(initial_prompt=system_prompt)
+            chat.add_user_message(user_prompt)
+            return self.model.respond(chat, config={
+                "temperature": temperature,
+            }).content.strip()
+        elif self.mode == Mode.OPENAI:
+            response = self.client.responses.create(
+                model="gpt-4.1",
+                instructions=system_prompt,
+                input=user_prompt,
+                temperature=0.2,
+            )
+            return response.output_text
+
+def get_chunks(text):
+    chunker = semchunk.chunkerify('gpt-4', MAX_CHUNK_SIZE)
+    chunks = chunker(text)
+    chunks = [c for c in chunks if len(encoding.encode(c)) >= MIN_CHUNK_SIZE]
+    return chunks
+
+if __name__ == "__main__":
+
+    raw_mode = sys.argv[2]
+    MODE = ""
+    if raw_mode.lower() == Mode.LOCAL.value:
+        MODE = Mode.LOCAL
+    elif raw_mode.lower() == Mode.OPENAI.value:
+        MODE = Mode.OPENAI
+    else:
+        raise ValueError("Invalid mode. Use 'LOCAL' or 'OPENAI'.")
+    client = LLMClient(MODE)
+
+    chapter_filename = sys.argv[1]
+    chapter_name = os.path.basename(chapter_filename).split('.')[0]
+    tmp_dir_name = f"{chapter_name}_summary_tmp"
+    if os.path.exists(tmp_dir_name):
+        os.system(f"rm {tmp_dir_name}/*")
+    else:
+        os.makedirs(tmp_dir_name)
+    
+    chapter_text = open(chapter_filename, "r").read()
+    encoding = tiktoken.encoding_for_model('gpt-4')
+    chunks = get_chunks(chapter_text)
+
+
+    print(f"Filename: {chapter_filename}")
+    print(f"Number of tokens: {len(encoding.encode(chapter_text))}")
+    print(f"Number of chunks: {len(chunks)}")
+    print()
+
+    token_count = 0
+    summaries = []
+
+    for i, chunk in enumerate(chunks):
+        chunk_size = len(encoding.encode(chunk))
+        summary_token_count = int(chunk_size * COMPRESSION_FACTOR)
+        print(f"Chunk {i} of ({len(chunks)}): {chunk_size} tokens")
+        print(f"    Summary size: {summary_token_count} tokens")
+        print(f"    Content: {repr(chunk[:60] + '...' if len(chunk) > 60 else chunk)}")
+        
+        prompt = open("prompts/single_excerpt_summary_prompt.txt", "r").read()
+        prompt = prompt.format(word_count=summary_token_count)
+        print(f"    Prompt: {repr(prompt[:60] + '...' if len(prompt) > 60 else prompt)}")
+        print()
+
+        response = client.respond(
+            system_prompt=prompt,
+            user_prompt=chunk,
+        )
+        print(f"    Response: {response}")
+        print()
+
+        summaries.append(response)
+
+        with open(f"{tmp_dir_name}/summary_chunk_{i}.txt", "w") as f:
+            f.write(response)
+    print()
+
+    prompt = open("prompts/merge_summary_prompt.txt", "r").read()
+    word_count = int(len(encoding.encode(chapter_text)) * COMPRESSION_FACTOR)
+    prompt = prompt.format(word_count=word_count)
+    print(f"Final prompt: {repr(prompt[:60] + '...' if len(prompt) > 60 else prompt)}")
+
+    final_summary = client.respond(
+        system_prompt=prompt,
+        user_prompt="\n\n".join(summaries),
+    )
+
+    print(f"Final summary: {final_summary}")
+    with open(f"{tmp_dir_name}/final_summary.txt", "w") as f:
+        f.write(final_summary)
+
+    
