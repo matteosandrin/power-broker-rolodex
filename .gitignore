@@ -2,3 +2,4 @@ __pycache__
 .DS_Store
 the-power-broker/
 chapter_summaries/chapters/
+chapter_summaries/*_tmp/
